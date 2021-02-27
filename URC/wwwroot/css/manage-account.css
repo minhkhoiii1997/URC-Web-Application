@@ -1,0 +1,15 @@
+﻿#profile-courses,
+#profile-interests,
+#profile-skills {
+    padding-left: 1em;
+}
+
+#tags li {
+    list-style-type: none;
+}
+
+.remove-tag {
+    border: none;
+    background: none;
+    margin-right: 1em;
+}

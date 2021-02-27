@@ -1,0 +1,20 @@
+﻿@page
+@model ConfirmEmailModel
+@{
+    ViewData["Title"] = "Confirm email";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if ((bool)ViewData["EmailStatus"])
+{
+    <p>
+        Your email was successfully confirmed. Click <a href="/Identity/Account/Login">here</a> to log in.
+    </p>
+}
+else
+{
+    <p>
+        Your email address is unconfirmed. This may be due to an error or you may need to check your spam folder for the confirmation email.
+    </p>
+}

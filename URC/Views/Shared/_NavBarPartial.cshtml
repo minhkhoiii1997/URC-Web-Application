@@ -1,0 +1,104 @@
+﻿@*/**
+    * Author:    Kevin Tran
+    * Partner:   Calvin Tu
+    * Date:      October 2nd, 2020
+    * Course:    CS 4540, University of Utah, School of Computing
+    * Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+    *
+    * We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did
+    * not copy it in part or whole from another source.  Any references used
+    * in the completion of the assignment are cited in my README file and in
+    * the appropriate method header.
+    *
+    * File Contents
+    * Navbar component; shared across layouts
+    */*@
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<URC.Areas.Identity.Data.ApplicationUser> SignInManager
+@inject UserManager<URC.Areas.Identity.Data.ApplicationUser> UserManager
+
+@{
+    var isAdmin = User.Claims.Where(o => o.Value == "Admin").Count() > 0;
+    var isProfessor = User.Claims.Where(o => o.Value == "Professor").Count() > 0;
+    var isStudent = User.Claims.Where(o => o.Value == "Student").Count() > 0;
+}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/University_of_Utah_horizontal_logo.svg/1200px-University_of_Utah_horizontal_logo.svg.png" alt="University of Utah Logo" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+
+
+            <partial name="_LoginPartial" />
+
+            <li class="nav-item">
+                <a class="dropdown-item nav-link" asp-area="" asp-controller="Opportunities" asp-action="Index">Opportunities</a>
+            </li>
+
+
+            @if (isAdmin)
+            {
+                <li class="nav-item">
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Admin Dashboard</a>
+                </li>
+            }
+
+            @if (isProfessor)
+            {
+                <li class="nav-item">
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Opportunities" asp-action="List">Edit Projects</a>
+                </li>
+                <li class="nav-item">
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Students" asp-action="Index">Applications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Students" asp-action="Search">Student Search</a>
+                </li>
+            }
+
+            @if (isStudent)
+            {
+                <li class="nav-item">
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Students" asp-action="Index">My Application</a>
+                </li>
+            }
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="for-tas-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    For TAs
+                </a>
+                <div class="dropdown-menu" aria-labelledby="for-tas-dropdown">
+                    <a class="dropdown-item nav-link">Calvin Tu, Kevin Tran</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Students" asp-action="Details" asp-route-id="1">View Student 1 Application</a>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Students" asp-action="Details" asp-route-id="2">View Student 2 Application</a>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Students" asp-action="Edit" asp-route-id="1">Edit Student 1 Application</a>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Students" asp-action="Edit" asp-route-id="2">Edit Student 2 Application</a>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Students" asp-action="Search">Student Search</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Opportunities" asp-action="List">Opportunities List</a>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Opportunities" asp-action="Index">Opportunities</a>
+                    <a class="dropdown-item nav-link" href="/Opportunities/Details/1">Opportunities Details</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Student" asp-action="Index">Student Applications</a>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Opportunities" asp-action="List">Professor Project Edit</a>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Admin" asp-action="Index">Users/Roles Admin</a>
+                    <a class="dropdown-item nav-link" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                </div>
+            </li>
+
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input id="global-search" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>

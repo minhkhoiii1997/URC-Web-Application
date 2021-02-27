@@ -1,0 +1,28 @@
+﻿#profile-banner-container {
+    overflow: hidden;
+    height: 20vh;
+}
+
+#profile-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+}
+
+#profile-picture-container {
+    margin-top: -100px;
+}
+
+#profile-picture-container img {
+    border-radius: 50%;
+    border: 3px solid #fff;
+    margin-left: 2em;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+}
+
+section p {
+    word-break: break-word;
+}

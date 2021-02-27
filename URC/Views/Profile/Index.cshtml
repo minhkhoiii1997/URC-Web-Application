@@ -1,0 +1,129 @@
+﻿@*/**
+ * Author:    Calvin Tu
+ * Date:      December 2020
+ * Course:    CS 4540, University of Utah, School of Computing
+ * Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+ *
+ * We, Kevin Tran, Calvin Tu, and Ping Cheng Chung certify that we wrote this code from scratch and did 
+ * not copy it in part or whole from another source.  Any references used 
+ * in the completion of the assignment are cited in my README file and in
+ * the appropriate method header.
+ *
+ * File Contents
+ * HTML for a user profile
+ */*@
+@model URC.Areas.Identity.Data.ApplicationUser
+
+@{
+    ViewData["Title"] = Model.Name + "'s Profile";
+    var name = String.IsNullOrEmpty(Model.Name) ? Model.UserName : Model.Name;
+    var student = (Student)ViewData["Student"];
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/css/profile.css" />
+    <link rel="stylesheet" type="text/css" href="~/css/chat.css" />
+}
+
+<section id="profile-header">
+    <div id="profile-banner-container">
+        <img id="profile-banner" class="img-fluid" src="https://www.upr.org/sites/upr/files/styles/x_large/public/201911/University_of_Utah_Presidents_Circle_.jpg" alt="profile background image" />
+    </div>
+    <div id="profile-picture-container" class="d-flex">
+        <img src="https://www.cs.utah.edu/~germain/Eye_Candy/jim_p.png" alt="profile picture">
+    </div>
+    <h1>@name</h1>
+</section>
+
+@if(ViewData["ViewerId"].ToString() == student.StudentId)
+{
+    <section>
+        <h2>Links for you</h2>
+        @if((bool)ViewData["IsViewerStudent"])
+        {
+            <a href="/Students/Index">Your applications</a>
+        } else
+        {
+            <p><a href="/Opportunities/List">Your listed opportunities</a></p>
+            <p><a href="/Students/Index">Received applications</a></p>
+            <p><a href="/Students/Search">Student Search</a></p>
+        }
+    </section>
+}
+
+@if (!string.IsNullOrEmpty(Model.Description))
+{
+    <section>
+        <h2>About</h2>
+        <p>@Model.Description</p>
+    </section>
+}
+
+@if (student.Courses.Count > 0)
+{
+    <section>
+        <h2>Courses</h2>
+        <ul>
+            @foreach (var c in student.Courses)
+            {
+                <li>@c.Course.Name</li>
+            }
+        </ul>
+    </section>
+}
+
+@if (student.Interests.Count > 0)
+{
+    <section>
+        <h2>Interests</h2>
+        <ul>
+            @foreach (var c in student.Interests)
+            {
+                <li>@c.Interest.Name</li>
+            }
+        </ul>
+    </section>
+}
+
+@if (student.Skills.Count > 0)
+{
+    <section>
+        <h2>Skills</h2>
+        <ul>
+            @foreach (var c in student.Skills)
+            {
+                <li>@c.Skill.Name</li>
+            }
+        </ul>
+    </section>
+}
+
+@if ((bool)ViewData["IsSignedIn"] && ViewData["ViewerId"].ToString() != student.StudentId)
+{
+    <div id="urc-chat">
+    <input id="viewer-id" class="d-none" value=@ViewData["ViewerId"] />
+    <input id="is-viewer-student" class="d-none" value=@ViewData["IsViewerStudent"] />
+    <input id="profile-id" class="d-none" value=@student.StudentId />
+        <div id="wrapper">
+            <div id="menu">
+                <p class="welcome">Welcome, @ViewData["ViewerName"]</p>
+                <div style="clear:both"></div>
+            </div>
+
+            <div class="container" id="chatbox">
+
+            </div>
+
+
+            <input id="messageInput" type="text" size="63" />
+            <button id="sendButton" type="submit">Send</button>
+
+        </div>
+        <input class="d-none" id="user-email" value=@ViewData["UserEmail"] />
+    </div>
+}
+
+@section Scripts {
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chat.js"></script>
+}

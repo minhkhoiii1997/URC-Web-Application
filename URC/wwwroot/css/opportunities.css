@@ -1,0 +1,97 @@
+﻿/**
+  Author:    Kevin Tran
+  Partner:   Calvin Tu
+  Date:      09/24/2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+
+  We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+  Styling for opportunities page
+ */
+
+#opportunities {
+    margin: 0 auto;
+}
+
+.opportunity {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    margin: 1em;
+    padding: 0.5em 1em;
+    padding-bottom: 0.5em;
+}
+
+.opportunity-header {
+    display: flex;
+}
+
+    .opportunity-header img {
+        margin-right: 1.25em;
+        width: 150px;
+        height: 150px;
+    }
+
+.at-a-glance {
+    display: flex;
+}
+
+    .at-a-glance h3 {
+        margin: 0;
+    }
+
+    .at-a-glance div {
+        margin-right: 1.25em;
+    }
+
+    .at-a-glance p {
+        margin: 0;
+    }
+
+.opportunity-tags {
+    padding: 0;
+    margin-bottom: 1em;
+}
+
+    .opportunity-tags li {
+        display: inline-block;
+        list-style-type: none;
+        background-color: #eee;
+        padding: 0.5em;
+        border-radius: 12px;
+    }
+
+#opportunity-filter {
+    margin-left: 1em;
+}
+
+    #opportunity-filter span {
+        display: inline-block;
+        margin: 0 0.5em;
+    }
+
+    /* Thanks to https://stackoverflow.com/questions/11538192/stop-chrome-from-auto-styling-input-type-search */
+    #opportunity-filter input[type="search"] {
+        padding: 0.5em 1.75em 0.5em 0.5em;
+        border: none;
+        background-color: #efefef;
+        border-radius: 8px;
+        transition: 0.4s;
+        -webkit-appearance: textfield;
+    }
+
+        #opportunity-filter input[type="search"]::-webkit-search-decoration,
+        #opportunity-filter input[type="search"]::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+        }
+
+        /* End of cited code */
+
+        #opportunity-filter input[type="search"]:active,
+        #opportunity-filter input[type="search"]:focus {
+            border: none;
+            box-shadow: 0 0 0 0 #fff, 0 0 0 0 #e22;
+            background-color: #fff;
+        }

@@ -1,0 +1,165 @@
+﻿<!--
+  Author:    Kevin Tran
+  Partner:   Calvin Tu
+  Date:      08/31/2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+
+  We, Kevin Tran, Calvin Tu, certify that we wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+  HTML for student's view of the listing of opportunities
+-->
+
+@{
+    ViewData["Title"] = "Handmade Opportunities";
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/css/opportunities.css" />
+}
+
+<br />
+
+<div id="opportunities" class="container">
+    <div id="opportunity-filter">
+        <input type="search" placeholder="Search for opportunities..." />
+        <span class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDepartment" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Departments
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Software Development</a>
+                <a class="dropdown-item" href="#">Machine Learning</a>
+                <a class="dropdown-item" href="#">AI</a>
+            </div>
+        </span>
+        <span class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarSortBy" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort by...
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">A-Z</a>
+                <a class="dropdown-item" href="#">Project ID</a>
+                <a class="dropdown-item" href="#">Professor's Researches</a>
+            </div>
+        </span>
+        <span>Ascending</span>
+    </div>
+    <hr />
+
+    <div class="opportunity">
+        <div class="opportunity-header">
+            <img src="https://static.hudl.com/users/prod/Hudl/5852fa1e9845ca0c70c59d3b/dd0b95debf4047739dfd61ec80797a33.jpg" alt="URC project logo" />
+            <div>
+                <h2>
+                    <a href="Details">Undergraduate Research Coordinator (URC)</a>
+                </h2>
+                <!-- Idea for at a glance comes from Handshake https://utah.joinhandshake.com/postings -->
+                <div class="at-a-glance">
+                    <div>
+                        <h3>
+                            Application deadline
+                        </h3>
+                        <p>
+                            September, 2020
+                        </p>
+                    </div>
+                    <div>
+                        <h3>
+                            Posted date
+                        </h3>
+                        <p>
+                            August, 2020
+                        </p>
+                    </div>
+                    <div>
+                        <h3>
+                            Skills required
+                        </h3>
+                        <p>
+                            CS3505
+                        </p>
+                    </div>
+                    <div>
+                        <h3>
+                            Professor
+                        </h3>
+                        <p>
+                            H. James de St. Germain
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>
+            A web application built to connect students to faculty to make finding research work frictionless. Professors can post available research opportunities along with any required skills, pictures, related tags, etc. Students can quickly find and sort through these opportunities and find the best one they can apply their skills to. There will also be an admin section to allow admins to visualize URC usage as well as other monitoring/maintenance tasks.
+        </p>
+        <ul class="opportunity-tags">
+            <li>C#</li>
+            <li>ASP.NET Core 3.1</li>
+            <li>JavaScript</li>
+            <li>School of Computing</li>
+        </ul>
+    </div>
+
+    <div class="opportunity">
+        <div class="opportunity-header">
+            <img src="https://static.hudl.com/users/prod/Hudl/5852fa1e9845ca0c70c59d3b/dd0b95debf4047739dfd61ec80797a33.jpg" alt="URC project logo" />
+            <div>
+                <h2>
+                    <a href="Details">Undergraduate Research Coordinator (URC)</a>
+                </h2>
+                <!-- Idea for at a glance comes from Handshake https://utah.joinhandshake.com/postings -->
+                <div class="at-a-glance">
+                    <div>
+                        <h3>
+                            Application deadline
+                        </h3>
+                        <p>
+                            September, 2020
+                        </p>
+                    </div>
+                    <div>
+                        <h3>
+                            Posted date
+                        </h3>
+                        <p>
+                            August, 2020
+                        </p>
+                    </div>
+                    <div>
+                        <h3>
+                            Skills required
+                        </h3>
+                        <p>
+                            CS3505
+                        </p>
+                    </div>
+                    <div>
+                        <h3>
+                            Professor
+                        </h3>
+                        <p>
+                            H. James de St. Germain
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>
+            A web application built to connect students to faculty to make finding research work frictionless. Professors can post available research opportunities along with any required skills, pictures, related tags, etc. Students can quickly find and sort through these opportunities and find the best one they can apply their skills to. There will also be an admin section to allow admins to visualize URC usage as well as other monitoring/maintenance tasks.
+        </p>
+        <ul class="opportunity-tags">
+            <li>C#</li>
+            <li>ASP.NET Core 3.1</li>
+            <li>JavaScript</li>
+            <li>School of Computing</li>
+        </ul>
+    </div>
+</div>
+
+
+
+

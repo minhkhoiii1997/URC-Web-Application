@@ -1,0 +1,75 @@
+﻿@*/**
+ * Author:    Kevin Tran
+ * Partner:   Calvin Tu
+ * Date:      October 2nd, 2020
+ * Course:    CS 4540, University of Utah, School of Computing
+ * Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+ *
+ * We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did
+ * not copy it in part or whole from another source.  Any references used
+ * in the completion of the assignment are cited in my README file and in
+ * the appropriate method header.
+ *
+ * File Contents
+ * Index page for administrative control UI
+ */*@
+
+@{
+    ViewData["Title"] = "Admin";
+}
+
+@*// Model is Email --> (userId, roles)*@
+@model Dictionary<string, Tuple<string, List<string>>>;
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+}
+
+<h1>Admin Dashboard</h1>
+
+<hr/>
+
+<p>
+    <a asp-controller="Opportunities" asp-action="List">Manage all opportunities</a>
+</p>
+<p>
+    <a asp-controller="Dashboard" asp-action="Index">Analytics Dashboard</a>
+</p>    
+
+<table id="users-roles-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Admin</th>
+            <th>Professor</th>
+            <th>Student</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kvp in Model)
+        {
+            var roles = kvp.Value.Item2;
+        <tr data-user-id="@kvp.Value.Item1">
+            <td>@kvp.Key</td>
+            <td data-role="Admin">
+                <input type="checkbox" checked="@roles.Contains("Admin")" />
+                <span class="text-hide">@roles.Contains("Admin")</span> @** These hidden spans allows DataTables to sort the checkboxes *@
+            </td>
+            <td data-role="Professor">
+                <input type="checkbox" checked="@roles.Contains("Professor")" />
+                <span class="text-hide">@roles.Contains("Professor")</span>
+            </td>
+            <td data-role="Student">
+                <input type="checkbox" checked="@roles.Contains("Student")" />
+                <span class="text-hide">@roles.Contains("Student")</span>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="~/js/admin.js"></script>
+}

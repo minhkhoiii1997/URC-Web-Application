@@ -1,0 +1,17 @@
+﻿#opportunity-searchtags,
+#opportunity-requiredskills,
+#opportunity-preferredskills {
+    padding-left: 1em;
+}
+
+#opportunity-searchtags li,
+#opportunity-requiredskills li,
+#opportunity-preferredskills li {
+    list-style-type: none;
+}
+
+.remove-tag {
+    border: none;
+    background: none;
+    margin-right: 1em;
+}

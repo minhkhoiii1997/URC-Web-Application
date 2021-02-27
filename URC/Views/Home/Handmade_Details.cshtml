@@ -1,0 +1,125 @@
+﻿<!--
+  Author:    Kevin Tran
+  Partner:   Calvin Tu
+  Date:      08/31/2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+
+  We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+  HTML structure for the student's view of the URC when viewing the details of a research opportunity
+-->
+
+@{
+    ViewData["Title"] = "Handmade Details";
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/css/details.css" />
+}
+
+<div id="details" class="container">
+    <div class="opportunity-header">
+        <img src="https://static.hudl.com/users/prod/Hudl/5852fa1e9845ca0c70c59d3b/dd0b95debf4047739dfd61ec80797a33.jpg" alt="URC project logo" />
+        <div>
+            <h2>
+                Undergraduate Research Coordinator (URC)
+            </h2>
+            <!-- Idea for at a glance comes from Handshake https://utah.joinhandshake.com/postings -->
+            <div class="at-a-glance">
+                <div>
+                    <h3>
+                        Application deadline
+                    </h3>
+                    <p>
+                        September, 2020
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        Posted date
+                    </h3>
+                    <p>
+                        August, 2020
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        Skills required
+                    </h3>
+                    <p>
+                        CS3505
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        Professor
+                    </h3>
+                    <p>
+                        H. James de St. Germain
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="details-body">
+        <h3>Research description</h3>
+        <p>
+            A web application built to connect students to faculty to make finding research work frictionless. Professors can post available research opportunities along with any required skills, pictures, related tags, etc. Students can quickly find and sort through these opportunities and find the best one they can apply their skills to. There will also be an admin section to allow admins to visualize URC usage as well as other monitoring/maintenance tasks.
+        </p>
+        <h3>
+            Role Description
+        </h3>
+        <p>
+            Gathers, organizes and analyzes data through interviews, literature searches, medical record reviews and related non-lab methods for use in studies, publications and other research related uses.
+        </p>
+        <p>
+            This position is considered Category IIA: Not required on campus and has the ability to telework remotely for the duration of the University of Utah’s response to COVID-19. An employee hired into this role will be responsible for providing space, telephone, printing, networking and/or internet capabilities at the telecommute location and agree to the terms of the University of Utah campus and Health Academics COVID-19 Telecommuting Agreement.
+        </p>
+
+        <h3>
+            Responsibilities
+        </h3>
+        <ol>
+            <li>Collects and compiles data from a variety of sources; may enter data into a PC or computer terminal.</li>
+            <li>Statistically analyzes data to include calculating the mean, median, and standard deviation, plotting scatter grams and performing multiple regression analysis in addition to other statistical computations.</li>
+            <li>May edit research papers, project reports, proposals and curriculum materials prior to publication or presentation.</li>
+            <li>Prepares format for final disposition of data; maintains an internal library on project information resources and final data collected.</li>
+            <li>May work with research personnel in the design and preparation of research projects and in recording data.</li>
+        </ol>
+
+        <h3>Required Skills</h3>
+        <ul>
+            <li>Strong understanding of software development</li>
+            <li>Software versioning</li>
+            <li>Problem solving skills</li>
+            <li>Basic C# skills</li>
+        </ul>
+        <h3>Preferred Skills</h3>
+        You’re currently enrolled in college and pursuing a Bachelor’s Degree with an Electrical Engineering or Computer Science path. Aside from your degree path, we are looking for the following skills:
+        <ul>
+            <li>Excellent verbal and written communication</li>
+            <li>Academic experience coding with Python and/or SQL</li>
+            <li>Strong Data analysis & Excel skills</li>
+            <li>Well-organized and able to prioritize and manage time in a fast-paced environment</li>
+            <li>Able to understand and analyze data to identify trends and opportunities for improvement</li>
+        </ul>
+        <h3>About Professor</h3>
+        <p>
+            Please note that the professor is a human being and a reasonable one at that. If you have a legitimate problem and you communicate ahead of time there is every chance that something can be done. Further, if your communications are professional, kind, and reasoned, it is more likely that you will be treated in a kind, professional, and reasonable manner. Perhaps this is the “Golden Rule” clause.
+        </p>
+    </div>
+    <ul class="opportunity-tags">
+        <li>C#</li>
+        <li>ASP.NET Core 3.1</li>
+        <li>JavaScript</li>
+        <li>School of Computing</li>
+    </ul>
+    <div id="apply-footer">
+        <button id="apply-button">
+            Apply
+        </button>
+    </div>
+</div>

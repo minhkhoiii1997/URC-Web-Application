@@ -1,0 +1,53 @@
+﻿/**
+  Author:    Kevin Tran
+  Partner:   Calvin Tu
+  Date:      09/24/2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+
+  We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+  Styling for details page
+ */
+
+.opportunity-header img {
+    width: 100%;
+}
+
+#details {
+    margin: 2em auto;
+}
+
+#details-body h3 {
+    margin-bottom: 0.5em;
+}
+
+#details-body p {
+    margin-top: 0;
+}
+
+#apply-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#apply-button {
+    background-color: #a20000;
+    color: #fff;
+    padding: 0.5em 1.5em;
+    font-size: 16px;
+    transition: 0.4s;
+    border: none;
+    border: 2px solid #a20000;
+}
+
+    #apply-button:active,
+    #apply-button:hover {
+        background-color: #e22;
+    }
+
+    #apply-button:focus {
+        border: 2px solid #000;
+    }

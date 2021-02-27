@@ -1,0 +1,105 @@
+﻿/**
+  Author:    Kevin Tran
+  Partner:   Calvin Tu
+  Date:      09/24/2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+
+  We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+  Styling for landing/home page
+ */
+
+#landing {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eee;
+    min-height: calc(100vh - 70px); /* Subtract off navbar height */
+    width: 100vw;
+    overflow: hidden;
+}
+
+#hero {
+    text-align: center;
+    font-size: 30px;
+}
+
+    #hero h1 {
+        font-size: 92px;
+    }
+
+#landing-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    min-height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    z-index: -500;
+    filter: brightness(50%) contrast(105%) blur(2px);
+}
+
+#featured-button a,
+#login-button a {
+    color: #fff;
+    font-size: 22px;
+}
+
+#featured-projects-carousel img {
+    height: 1000px;
+    object-fit: cover;
+    filter: brightness(0.7);
+}
+
+.content-block {
+    margin: 1em 0;
+    padding: 1em 0;
+}
+
+    .content-block h2 {
+        margin: 1em 0;
+    }
+
+#about-us p {
+    font-size: 16px;
+}
+
+#about-us img {
+    height: 300px;
+    margin-left: 3em;
+}
+
+#below-fold {
+    margin: 0 10%;
+}
+
+.testimonial {
+    display: flex;
+    margin: 2em 0;
+}
+
+    .testimonial img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        object-position: center center;
+        border-radius: 100%;
+    }
+
+.testimonial-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 2em;
+    font-size: 18px;
+}
+
+    .testimonial-body h5 {
+        font-size: 28px;
+    }

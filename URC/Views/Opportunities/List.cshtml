@@ -1,0 +1,70 @@
+﻿<!--
+  Author:    Kevin Tran
+  Partner:   Calvin Tu
+  Date:      09/23/2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+
+  We, Kevin Tran, Calvin Tu, certify that we wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+  HTML for student's view of the listing of opportunities
+-->
+
+@model IEnumerable<URC.Models.Opportunity>
+
+@{
+    ViewData["Title"] = "Manage Opportunities";
+}
+
+<h1>Manage Opportunities</h1>
+
+@if((bool)ViewData["IsAdmin"])
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            @if ((bool)ViewData["IsAdmin"])
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Professor)
+                </th>
+            }
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @if ((bool)ViewData["IsAdmin"])
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Professor.Name)
+                </td>
+            }
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.OpportunityId">Edit</a>
+                    @if ((bool)ViewData["IsAdmin"])
+                    {
+                        // Thanks to http://www.technicaloverload.com/escaping-razor-view-symbol-in-mvc-project/
+                        @Html.Raw("|") <a asp-action="Details" asp-route-id="@item.OpportunityId">Details</a>
+                        @Html.Raw("|") <a asp-action="Delete" asp-route-id="@item.OpportunityId">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

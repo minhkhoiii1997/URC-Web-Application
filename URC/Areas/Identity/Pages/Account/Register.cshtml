@@ -1,0 +1,133 @@
+﻿@*/**
+ * Author:    Calvin Tu
+ * Date:      December 2020
+ * Course:    CS 4540, University of Utah, School of Computing
+ * Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+ *
+ * We, Kevin Tran, Calvin Tu, and Ping Cheng Chung certify that we wrote this code from scratch and did 
+ * not copy it in part or whole from another source.  Any references used 
+ * in the completion of the assignment are cited in my README file and in
+ * the appropriate method header.
+ *
+ * File Contents
+ * HTML for user registration
+ */*@
+@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h4>Create a new account.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <h5>Required profile information</h5>
+            <hr />
+
+            <div class="form-group">
+                <label asp-for="Input.UserName"></label>
+                <input asp-for="Input.UserName" class="form-control" value="ktucalvin"/>
+                <span asp-validation-for="Input.UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Email"></label>
+                <input asp-for="Input.Email" class="form-control" value="ktucalvin@example.com" />
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" value="pass" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword"></label>
+                <input asp-for="Input.ConfirmPassword" class="form-control" value="pass" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <h5>Optional profile information</h5>
+            <hr />
+            <div class="form-group">
+                <label asp-for="Input.Name"></label>
+                <input asp-for="Input.Name" class="form-control" value="Calvin Tu" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.DOB"></label>
+                <input asp-for="Input.DOB" class="form-control" value="2020-05-09"/>
+                <span asp-validation-for="Input.DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Department</label>
+                <select asp-for="Input.Department" class="custom-select" value="CS">
+                    @* Thanks to https://stackoverflow.com/questions/105372/how-to-enumerate-an-enums *@
+                    @foreach (var department in Enum.GetValues(typeof(URC.Models.Departments)))
+                    {
+                        <option value="@department">@department.ToString().Replace("_", " ")</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.UId"></label>
+                <input asp-for="Input.UId" class="form-control" value="u0007771" />
+                <span asp-validation-for="Input.UId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input asp-for="Input.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Input.Description"></label>
+                <textarea id="registration-textarea" asp-for="Input.Description" class="form-control" rows="10">
+                </textarea>
+                <span asp-validation-for="Input.Description" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <section>
+            <h4>Use another service to register.</h4>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
+                            for details on setting up this ASP.NET application to support logging in via external services.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // ASP.NET kept deleting the default value, so we set it here
+        document.querySelector('#registration-textarea').value = 'CS4540 is cool! This is just some demo text to show off user registration. You can see it later during when looking at the created user\'s profile as their description! Now for more filler text so the profile description looks more fleshed out would go here and so on and so on. Probably need to scatter some buzz words like Computer science and neural networks throughout this description so when skimming it Natural Language Processing it looks somewhat realistic as a profile description.'
+    </script>
+}

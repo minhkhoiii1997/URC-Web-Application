@@ -1,0 +1,134 @@
+﻿@*/**
+    * Author:    Kevin Tran
+    * Partner:   Calvin Tu
+    * Date:      October 2020
+    * Course:    CS 4540, University of Utah, School of Computing
+    * Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+    *
+    * We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did
+    * not copy it in part or whole from another source.  Any references used
+    * in the completion of the assignment are cited in my README file and in
+    * the appropriate method header.
+    *
+    * File Contents
+    * HTML for student create application page
+    */
+*@
+
+@model IEnumerable<URC.Models.StudentApplication>
+
+@{
+    string applicationTitle = (bool)ViewData["IsStudent"] ? "My Application" : "Student Applications";
+    ViewData["Title"] = applicationTitle;
+}
+
+@{
+}
+
+<h1>
+    @applicationTitle
+</h1>
+
+<p>
+    @if ((bool)ViewData["IsStudent"])
+    {
+        <a asp-action="Create">Create New</a>
+    }
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Resume
+            </th>
+            <th>
+                Graduation
+            </th>
+            <th>
+                Degree
+            </th>
+            <th>
+                GPA
+            </th>
+            <th>
+                uID
+            </th>
+            <th>
+                Availability
+            </th>
+            <th>
+                Statement
+            </th>
+            <th>
+                Created
+            </th>
+            <th>
+                Modified
+            </th>
+            <th>
+                Application
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.ResumeFilename == "" || item.ResumeFilename == null)
+                    {
+                        @Html.Raw("--")
+                    }
+                    else
+                    {
+                        <a href="~/uploads/resumes/@item.ResumeFilename">Resume</a>
+                    }
+                </td>
+                <td>
+                    @item.ExpectedGraduation.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DegreePlan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GPA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Availability)
+                </td>
+                <td>
+                    @(
+                        item.PersonalStatement.Length < 30 ? item.PersonalStatement : item.PersonalStatement.Substring(0, 27) + "..."
+                    )
+                </td>
+                <td>
+                    @(item.ApplicationDate.ToShortDateString())
+                </td>
+                <td>
+                    @(item.TimeModified.ToShortDateString())
+                </td>
+                <td>
+                    @item.OpportunityId - @item.Opportunity.Name
+                </td>
+                <td>
+                    @if ((bool)ViewData["IsStudent"])
+                    {
+                        <div class="d-flex flex-column">
+                            <a asp-action="Edit" asp-route-id="@item.StudentApplicationId">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.StudentApplicationId">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.StudentApplicationId">Delete</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <a asp-action="Details" asp-route-id="@item.StudentApplicationId">Details</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

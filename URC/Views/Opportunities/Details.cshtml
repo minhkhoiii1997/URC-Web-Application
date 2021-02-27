@@ -1,0 +1,139 @@
+﻿<!--
+  Author:    Kevin Tran
+  Partner:   Calvin Tu
+  Date:      08/31/2020
+  Course:    CS 4540, University of Utah, School of Computing
+  Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+
+  We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did not copy it in part or whole from
+  another source.  Any references used in the completion of the assignment are cited in my README file.
+
+  File Contents
+  HTML structure for the student's view of the URC when viewing the details of a research opportunity
+-->
+
+@model URC.Models.Opportunity
+
+@{ ViewData["Title"] = $"{Model.Name} Details"; }
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/css/details.css" />
+}
+
+<div id="details" class="container">
+    @{ 
+        var coverImage = "https://static.hudl.com/users/prod/Hudl/5852fa1e9845ca0c70c59d3b/dd0b95debf4047739dfd61ec80797a33.jpg";
+    }
+    @if (Model.Image != "" && Model.Image != null)
+    {
+        coverImage = "/uploads/images/" + Model.Image;
+    }
+
+    <div class="opportunity-header">
+        <img src="@coverImage" alt="URC project logo" />
+        <div>
+            <h2>
+                @Model.Name
+            </h2>
+            <!-- Idea for at a glance comes from Handshake https://utah.joinhandshake.com/postings -->
+            <div class="at-a-glance">
+                <div>
+                    <h3>
+                        Application deadline
+                    </h3>
+                    <!--Reference from https://entityframework.net/knowledge-base/26464319/display-only-date-in--html-displayfor---in-mvc -->
+                    <p>
+                        @Convert.ToString(string.Format("{0:MM/dd/yyyy}", Model.Deadline))
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        Posted date
+                    </h3>
+                    <p>
+                        @Convert.ToString(string.Format("{0:MM/dd/yyyy}", Model.PostedDate))
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        Skills required
+                    </h3>
+                    <ul class="opportunity-skills">
+                        @foreach (var skill in Model.RequiredSkills)
+                        {
+                            <li>
+                                @Html.DisplayFor(s => skill.Skill.Name)
+                            </li>
+                        }
+                    </ul>
+                </div>
+                <div>
+                    <h3>
+                        Professor
+                    </h3>
+                    <p>
+                        @Html.DisplayFor(modelItem => Model.Professor.Name)
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="details-body">
+        <h3>Research description</h3>
+        <p>
+            @Html.DisplayFor(modelItem => Model.Description)
+        </p>
+        <h3>
+            Role Description
+        </h3>
+        <p>
+            @Html.DisplayFor(modelItem => Model.RoleDescription)
+        </p>
+
+        <h3>
+            Responsibilities
+        </h3>
+        <p>
+            @Html.DisplayFor(modelItem => Model.Responsibilities)
+        </p>
+
+        <h3>Required Skills</h3>
+        <ul class="opportunity-required-skills">
+            @foreach (var skill in Model.RequiredSkills)
+            {
+                <li>
+                    @Html.DisplayFor(s => skill.Skill.Name)
+                </li>
+            }
+        </ul>
+        <h3>Preferred Skills</h3>
+
+        <ul class="opportunity-preferred-skills">
+            @foreach (var skill in Model.PreferredSkills)
+            {
+                <li>
+                    @Html.DisplayFor(s => skill.Skill.Name)
+                </li>
+            }
+        </ul>
+        <h3>Mentor</h3>
+        <p>
+            @Html.DisplayFor(modelItem => Model.Mentor)
+        </p>
+    </div>
+    <ul class="opportunity-tags">
+        @foreach (var tag in Model.Tags)
+        {
+            <li>
+                @Html.DisplayFor(t => tag.SearchTag.Name)
+            </li>
+        }
+    </ul>
+    <div id="apply-footer">
+        <a id="apply-button" class="btn btn-primary" href="/Students/Create?opportunityId=@Model.OpportunityId">
+            Apply
+        </a>
+    </div>
+
+    <a asp-controller="Opportunities" asp-action="Index">Back to list</a>
+</div>

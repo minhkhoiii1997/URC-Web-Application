@@ -1,0 +1,160 @@
+﻿@*/**
+    * Author:    Kevin Tran
+    * Partner:   Calvin Tu
+    * Date:      October 2020
+    * Course:    CS 4540, University of Utah, School of Computing
+    * Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+    *
+    * We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did
+    * not copy it in part or whole from another source.  Any references used
+    * in the completion of the assignment are cited in my README file and in
+    * the appropriate method header.
+    *
+    * File Contents
+    * HTML for student create application page
+    */
+*@
+
+@model URC.Models.StudentApplication
+
+@{
+    string applicationTitle = (bool)ViewData["IsStudent"] ? "My Application" : "Student Application";
+    ViewData["Title"] = applicationTitle;
+}
+
+<h1>@applicationTitle</h1>
+
+@if ((bool)ViewData["IsStudent"])
+{
+    <p>
+        <button id="toggle-active-application" type="button" class="btn @(Model.IsLookingForPosition ? "btn-primary" : "btn-secondary")" data-student-id=@Model.Student.StudentId data-is-student-active=@Model.IsLookingForPosition>
+            @(Model.IsLookingForPosition ? "Looking for position" : "Not looking for position")
+        </button>
+    </p>
+}
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-4">
+            Resume
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.ResumeFilename == "" || Model.ResumeFilename == null)
+            {
+                @Html.Raw("--")
+            }
+            else
+            {
+                <a href="~/uploads/resumes/@Model.ResumeFilename">Resume</a>
+            }
+        </dd>
+        <dt class="col-sm-4">
+            Application To
+        </dt>
+        <dd class="col-sm-10">
+            @Model.OpportunityId - @Model.Opportunity.Name
+        </dd>
+        <dt class="col-sm-4">
+            Expected Graduation
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ExpectedGraduation)
+        </dd>
+        <dt class="col-sm-4">
+            Degree Plan
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DegreePlan)
+        </dd>
+        <dt class="col-sm-4">
+            GPA
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.GPA)
+        </dd>
+        <dt class="col-sm-4">
+            uID
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.UId)
+        </dd>
+        <dt class="col-sm-4">
+            Availability
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Availability)
+        </dd>
+        <dt class="col-sm-4">
+            Personal Statement
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PersonalStatement)
+        </dd>
+        <dt class="col-sm-4">
+            Created (UTC)
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.ApplicationDate.ToUniversalTime())
+        </dd>
+        <dt class="col-sm-4">
+            Modified (UTC)
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.TimeModified.ToUniversalTime())
+        </dd>
+        <dt class="col-sm-4">
+            Looking for position?
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.IsLookingForPosition ? "Yes" : "No")
+        </dd>
+    </dl>
+    <p>
+        <b>Courses: </b>
+        @{
+            string courses = "";
+            foreach (var c in Model.Student.Courses)
+            {
+                courses += c.Course.Name + ", ";
+            }
+            if(Model.Student.Courses.Count > 0)
+                courses = courses.Substring(0, courses.Length - 2);
+        }
+        @(courses)
+    </p>
+    <p>
+        <b>Interests: </b>
+        @{
+            string interests = "";
+            foreach (var i in Model.Student.Interests)
+            {
+                interests += i.Interest.Name + ", ";
+            }
+            if (Model.Student.Interests.Count > 0)
+                interests = interests.Substring(0, interests.Length - 2);
+        }
+        @(interests)
+    </p>
+    <p>
+        <b>Skills: </b>
+        @{
+            string skills = "";
+
+            foreach (var s in Model.Student.Skills)
+            {
+                skills += s.Skill.Name + ", ";
+            }
+            if (Model.Student.Skills.Count > 0)
+                skills = skills.Substring(0, skills.Length - 2);
+        }
+        @(skills)
+    </p>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.StudentApplicationId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/js/student-application.js"></script>
+}

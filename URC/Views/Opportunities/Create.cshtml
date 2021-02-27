@@ -1,0 +1,85 @@
+﻿@***
+ * Author:    Kevin Tran
+ * Partner:   Calvin Tu
+ * Date:      September 2020
+ * Course:    CS 4540, University of Utah, School of Computing
+ * Copyright: CS 4540 and Kevin Tran and Calvin Tu - This work may not be copied for use in Academic Coursework.
+ *
+ * We, Kevin Tran, Calvin Tu certify that we wrote this code from scratch and did
+ * not copy it in part or whole from another source.  Any references used
+ * in the completion of the assignment are cited in my README file and in
+ * the appropriate method header.
+ *
+ * File Contents
+ * Create page for opportunities
+ */*@
+
+@model URC.Models.Opportunity
+
+@{ ViewData["Title"] = "Create Opportunity"; }
+
+<div class="container mx-auto mt-1">
+    <h1>Create Opportunity</h1>
+
+    <hr />
+    <p>You can upload a cover image by editing this opportunity after creation.</p>
+
+    <form asp-action="Create">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="control-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Professor</label>
+            <select asp-for="ProfessorId" class="custom-select">
+                @foreach (var professor in (IEnumerable<URC.Areas.Identity.Data.ApplicationUser>)ViewData["Professors"])
+                {
+                    <option value="@professor.Id">@professor.UserName</option>
+                }
+            </select>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label"></label>
+            <textarea asp-for="Description" class="form-control" rows="10"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="RoleDescription" class="control-label"></label>
+            <textarea asp-for="RoleDescription" class="form-control" rows="10"></textarea>
+            <span asp-validation-for="RoleDescription" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Responsibilities" class="control-label"></label>
+            <textarea asp-for="Responsibilities" class="form-control" rows="10"></textarea>
+            <span asp-validation-for="Responsibilities" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Mentor" class="control-label"></label>
+            <input asp-for="Mentor" class="form-control" />
+            <span asp-validation-for="Mentor" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Deadline" class="control-label"></label>
+            <input asp-for="Deadline" class="form-control" />
+            <span asp-validation-for="Deadline" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Pay" class="control-label"></label>
+            <input asp-for="Pay" class="form-control" />
+            <span asp-validation-for="Pay" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <div>
+        <a asp-action="List">Back to List</a>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
