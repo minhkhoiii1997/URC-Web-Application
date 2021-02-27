@@ -13,6 +13,14 @@ Deployed URL:  Calvin: http://ec2-75-101-242-168.compute-1.amazonaws.com/
 Github Page:   https://github.com/uofu-cs4540-fall2020/final-project-ktucalvin
 ```
 
+## Project Description
+A web application built to connect students to faculty to make finding research work frictionless. Professors can post
+available research opportunities along with any required skills, pictures, related tags, etc. Students can quickly find
+and sort through these opportunities and find the best one they can apply their skills to. There will also be an admin
+section to allow admins to visualize URC usage as well as other monitoring/maintenance tasks.
+
+Built on an ASP.NET Core 3.1 (MVC) backend and a vanilla frontend, styled with Bootstrap, and deployed on AWS.
+
 ## Comments to Evaluators:
 
 Please see final_report.pdf
@@ -163,10 +171,4 @@ N/A
 58. datetime2 (Transact-SQL) - https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetime2-transact-sql?view=sql-server-ver15
 59. Custom date and time format strings - https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
 
-## Project Description
-A web application built to connect students to faculty to make finding research work frictionless. Professors can post
-available research opportunities along with any required skills, pictures, related tags, etc. Students can quickly find
-and sort through these opportunities and find the best one they can apply their skills to. There will also be an admin
-section to allow admins to visualize URC usage as well as other monitoring/maintenance tasks.
 
-Built on an ASP.NET Core 3.1 (MVC) backend and a vanilla frontend, styled with Bootstrap, and deployed on AWS.
